@@ -2,10 +2,8 @@ using System;
 using System.Collections;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using System.Runtime.Serialization;
 using UnityEngine;
 using UnityEngine.Networking;
-using File = UnityEngine.Windows.File;
 
 public class LoadingManager : MonoBehaviourSingleton<LoadingManager>
 {
