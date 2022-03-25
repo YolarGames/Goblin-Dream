@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -56,7 +57,7 @@ public class MenuManager : MonoBehaviour
 		// TODO: Check whether there is proper resources on device
 		// TODO: Save resources to device
 		
-		SceneManager.LoadScene("Game");
+		Addressables.LoadSceneAsync("Game");
 	}
 
 	private void SwitchToSettingsMenu()
