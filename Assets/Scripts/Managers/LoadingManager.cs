@@ -19,8 +19,8 @@ public class LoadingManager : MonoBehaviourSingleton<LoadingManager>
 	[SerializeField] private Cooldown _internetCheckCD;
 	[SerializeField] private Image _internetLogo;
 
-	private AsyncOperationHandle<SceneInstance> _asyncHandlerForAddressables;
-	private AsyncOperation _asyncOperation;
+	private AsyncOperationHandle<SceneInstance> _gameAsyncOperationHandle;
+	private AsyncOperation _mainMenuLoadAsync;
 	private int _dotsCount;
 	private bool _isOnline;
 
@@ -30,14 +30,13 @@ public class LoadingManager : MonoBehaviourSingleton<LoadingManager>
 			return;
 		
 		StartCoroutine(FadeInRoutine());
-		_asyncHandlerForAddressables = Addressables.LoadSceneAsync("Game", LoadSceneMode.Single);
+		_gameAsyncOperationHandle = Addressables.LoadSceneAsync("Game", LoadSceneMode.Single);
 		SaveManager.SaveDataToJson(Application.persistentDataPath, Application.version);
 	}
-	
+
 	public void LoadMainMenuScene()
 	{
-		StartCoroutine(FadeInRoutine());
-		_asyncOperation = SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);
+		_mainMenuLoadAsync = SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single);
 	}
 	
 	private void Start()
@@ -46,7 +45,6 @@ public class LoadingManager : MonoBehaviourSingleton<LoadingManager>
 		_internetCheckCD.Reset();
 		SetDefaultCanvasGroupSettings();
 		
-		SceneManager.sceneLoaded += AudioManager.Instance.ChangeMusic;
 		SceneManager.sceneLoaded += SetFirstLaunchToFalse;
 	}
 
@@ -60,30 +58,30 @@ public class LoadingManager : MonoBehaviourSingleton<LoadingManager>
 
 	private void UpdateSceneLoadStatus()
 	{
-		if (_asyncOperation == null)
+		if (_mainMenuLoadAsync == null)
 			return;
 			
-		if (_asyncOperation.progress.Equals(1f))
+		if (_mainMenuLoadAsync.progress.Equals(1f))
 		{
 			StopCoroutine(FadeInRoutine());
 			StartCoroutine(FadeOutRoutine());
 		}
 
-		_percentText.text = _asyncOperation.progress.ToString("P0");
+		_percentText.text = _mainMenuLoadAsync.progress.ToString("P0");
 	}
 	
 	private void UpdateSceneLoadStatusForAddressables()
 	{
-		if (!_asyncHandlerForAddressables.IsValid())
+		if (!_gameAsyncOperationHandle.IsValid())
 			return;
 			
-		if (_asyncHandlerForAddressables.PercentComplete.Equals(1f))
+		if (_gameAsyncOperationHandle.PercentComplete.Equals(1f))
 		{
 			StopCoroutine(FadeInRoutine());
 			StartCoroutine(FadeOutRoutine());
 		}
 
-		_percentText.text = _asyncHandlerForAddressables.PercentComplete.ToString("P0");
+		_percentText.text = _gameAsyncOperationHandle.PercentComplete.ToString("P0");
 	}
 	
 	private void SwitchLoadingText()
@@ -179,7 +177,6 @@ public class LoadingManager : MonoBehaviourSingleton<LoadingManager>
 	
 	private void OnDisable()
 	{
-		SceneManager.sceneLoaded -= AudioManager.Instance.ChangeMusic;
 		SceneManager.sceneLoaded -= SetFirstLaunchToFalse;
 	}
 }

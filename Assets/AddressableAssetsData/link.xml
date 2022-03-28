@@ -6,6 +6,7 @@
     <type fullname="EventManager" preserve="all" />
     <type fullname="GoToMainMenu" preserve="all" />
     <type fullname="PlayerMovement" preserve="all" />
+    <type fullname="SceneBoot" preserve="all" />
     <type fullname="SetCanvasCamera" preserve="all" />
     <type fullname="Cooldown" preserve="nothing" serialized="true" />
   </assembly>
@@ -82,6 +83,7 @@
   </assembly>
   <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.Camera" preserve="all" />
+    <type fullname="UnityEngine.Cubemap" preserve="all" />
     <type fullname="UnityEngine.GameObject" preserve="all" />
     <type fullname="UnityEngine.Light" preserve="all" />
     <type fullname="UnityEngine.LightmapSettings" preserve="all" />
