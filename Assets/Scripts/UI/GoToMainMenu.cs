@@ -9,6 +9,6 @@ public class GoToMainMenu : MonoBehaviour
 	
 	private void Start()
 	{
-		_gotoMenu.onClick.AddListener(LoadingController.Instance.LoadMainMenuScene);
+		_gotoMenu.onClick.AddListener(LoadingManager.Instance.LoadMainMenuScene);
 	}
 }

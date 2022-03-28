@@ -7,7 +7,7 @@ using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
 
 
-public class LoadingController : MonoBehaviourSingleton<LoadingController>
+public class LoadingManager : MonoBehaviourSingleton<LoadingManager>
 {
 	[SerializeField] private Text _loadingText;
 	[SerializeField] private Text _percentText;

@@ -46,7 +46,7 @@ public class MenuManager : MonoBehaviour
 	private void LoadGameScene()
 	{
 		AudioManager.Instance.PlayClick();
-		LoadingController.Instance.LoadGameScene();
+		LoadingManager.Instance.LoadGameScene();
 	}
 
 	private void SwitchToSettingsMenu()

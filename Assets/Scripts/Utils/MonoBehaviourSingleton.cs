@@ -6,10 +6,10 @@ public class MonoBehaviourSingleton<T> : MonoBehaviour where T :MonoBehaviour
 
 	public virtual void Awake()
 	{
-		if (Instance == null)
-			Instance = this as T;
-		else if (Instance == this)
+		if (Instance != null && Instance != this)
 			Destroy(gameObject);
+		else
+			Instance = this as T;
 		
 		DontDestroyOnLoad(gameObject);
 	}
