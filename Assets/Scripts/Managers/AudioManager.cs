@@ -9,16 +9,18 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 	[SerializeField] private AudioMixer _audioMixer;
 	[SerializeField] private AudioClip _musicMainMenu;
 	[SerializeField] private AudioClip _musicInBattle;
-	[SerializeField] private AudioClip _click;
-	
-	
-	public void PlayClick() => PlaySfx(_click);
+	[SerializeField] private AudioClip _clickSound;
 
-	public void PlaySfx(AudioClip audioClip)
+	public void PlayClick()
 	{
-		_sfxSource.PlayOneShot(audioClip);
+		PlaySfxClip(_clickSound);
 	}
-
+	
+	public void PlaySfxClip(AudioClip clip)
+	{
+		_sfxSource.clip = clip;
+		_sfxSource.Play();
+	}
 	public void ToggleMusicActivity(bool toggleActive)
 	{
 		_audioMixer.SetFloat("musicVolume", toggleActive ? 0 : -80);

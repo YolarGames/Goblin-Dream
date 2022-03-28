@@ -16,12 +16,7 @@ public class MenuManager : MonoBehaviour
 	[SerializeField] private Toggle _sfxToggle;
 	private AnimationController _menuAnimController;
 	private AnimationController _settingsAnimController;
-
-	public static void LoadMainMenuScene()
-	{
-		// TODO: Show loading screen
-		SceneManager.LoadScene("MainMenu");
-	}
+	
 
 	private void Start()
 	{
@@ -38,32 +33,25 @@ public class MenuManager : MonoBehaviour
 
 	private void ToggleMusic(bool isOn)
 	{
-		AudioManager.Instance.ToggleMusicActivity(isOn);
 		AudioManager.Instance.PlayClick();
+		AudioManager.Instance.ToggleMusicActivity(isOn); 
 	}
 
 	private void ToggleSfx(bool isOn)
 	{
-		AudioManager.Instance.ToggleSfxActivity(isOn);
 		AudioManager.Instance.PlayClick();
+		AudioManager.Instance.ToggleSfxActivity(isOn);
 	}
 
 	private void LoadGameScene()
 	{
 		AudioManager.Instance.PlayClick();
-		
-		// TODO: Show loading screen 
-		// TODO: Load resources from server
-		// TODO: Check whether there is proper resources on device
-		// TODO: Save resources to device
-		
-		Addressables.LoadSceneAsync("Game");
+		LoadingController.Instance.LoadGameScene();
 	}
 
 	private void SwitchToSettingsMenu()
 	{
 		AudioManager.Instance.PlayClick();
-		
 		_settingsMenu.SetActive(true);
 		
 		_play.enabled = false;
@@ -79,7 +67,7 @@ public class MenuManager : MonoBehaviour
 	private void SwitchToMainMenu()
 	{
 		AudioManager.Instance.PlayClick();
-		
+
 		_play.enabled = true;
 		_settings.enabled = true;
 		_back.enabled = false;

@@ -110,7 +110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8867577220891958246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.928, z: 1.479}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -135,7 +135,7 @@ MonoBehaviour:
   _boxCollider: {fileID: 1724672277}
   _rotationAngle: 200
   _destroyCoinAfter: 0
-  _coinPickUpClip: {fileID: 8300000, guid: 8cfba4c18896a484db3631e1a639a8c2, type: 3}
+  _coinClip: {fileID: 8300000, guid: 8cfba4c18896a484db3631e1a639a8c2, type: 3}
 --- !u!54 &8867577220891958245
 Rigidbody:
   m_ObjectHideFlags: 0

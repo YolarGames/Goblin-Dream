@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using Utils;
 
@@ -9,10 +8,9 @@ public class Coin : MonoBehaviour
 	[SerializeField] private BoxCollider _boxCollider;
 	[SerializeField] private float _rotationAngle;
 	[SerializeField] private float _destroyCoinAfter;
-	[SerializeField] private AudioClip _coinPickUpClip;
+	[SerializeField] private AudioClip _coinClip;
 	
 	private const float DestroyTime = 5f;
-	
 
 	private void Start()
 	{
@@ -50,7 +48,7 @@ public class Coin : MonoBehaviour
 			return;
 
 		CoinCollector.AddScore(coinValue);
-		AudioManager.Instance.PlaySfx(_coinPickUpClip);
+		AudioManager.Instance.PlaySfxClip(_coinClip);
 		Destroy(gameObject);
 	}
 
