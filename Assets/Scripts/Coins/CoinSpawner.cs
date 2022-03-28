@@ -33,19 +33,20 @@ public class CoinSpawner : MonoBehaviour
 		var spawnPoint = GetRandomSpawnPoint();
 		var coinInstance = Instantiate(coin, spawnPoint, Quaternion.identity, this.transform);
 		_spawnCD.Reset();
-	}
+		
+		
+		GameObject GetRandomCoinObject()
+		{
+			var randomIndex = Random.Range(0, coinPrefabs.Length);
+			return coinPrefabs[randomIndex];
+		}
+		
+		Vector3 GetRandomSpawnPoint()
+		{
+			var randomX = Random.Range(-_spawnArea.x, _spawnArea.x);
+			var randomZ = Random.Range(-_spawnArea.z, _spawnArea.z);
 
-	private GameObject GetRandomCoinObject()
-	{
-		var randomIndex = Random.Range(0, coinPrefabs.Length);
-		return coinPrefabs[randomIndex];
-	}
-
-	private Vector3 GetRandomSpawnPoint()
-	{
-		var randomX = Random.Range(-_spawnArea.x, _spawnArea.x);
-		var randomZ = Random.Range(-_spawnArea.z, _spawnArea.z);
-
-		return new Vector3(randomX, _spawnArea.y, randomZ);
+			return new Vector3(randomX, _spawnArea.y, randomZ);
+		}
 	}
 }

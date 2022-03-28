@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 		_sfxSource.clip = clip;
 		_sfxSource.Play();
 	}
+	
 	public void ToggleMusicActivity(bool toggleActive)
 	{
 		_audioMixer.SetFloat("musicVolume", toggleActive ? 0 : -80);
@@ -34,10 +35,9 @@ public class AudioManager : MonoBehaviourSingleton<AudioManager>
 	private void Start()
 	{
 		SetMainMenuMusic();
-		SceneManager.sceneLoaded += ChangeMusic;
 	}
 
-	private void ChangeMusic (Scene scene, LoadSceneMode loadMode)
+	public void ChangeMusic (Scene scene, LoadSceneMode loadMode)
 	{
 		if (scene.name == "Game")
 			SetBattleMusic();

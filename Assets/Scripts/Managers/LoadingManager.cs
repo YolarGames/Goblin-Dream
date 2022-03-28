@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
+using UnityEngine.Networking;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
@@ -11,16 +13,25 @@ public class LoadingManager : MonoBehaviourSingleton<LoadingManager>
 {
 	[SerializeField] private Text _loadingText;
 	[SerializeField] private Text _percentText;
+	[SerializeField] private Text _internetWarning;
 	[SerializeField] private CanvasGroup _canvasGroup;
 	[SerializeField] private Cooldown _loadingAnimationCD;
+	[SerializeField] private Cooldown _internetCheckCD;
+	[SerializeField] private Image _internetLogo;
+
 	private AsyncOperationHandle<SceneInstance> _asyncHandlerForAddressables;
 	private AsyncOperation _asyncOperation;
 	private int _dotsCount;
+	private bool _isOnline;
 
 	public void LoadGameScene()
 	{
+		if (IsFirstTimeOpened() && !_isOnline)
+			return;
+		
 		StartCoroutine(FadeInRoutine());
-		_asyncHandlerForAddressables = Addressables.LoadSceneAsync("Game", LoadSceneMode.Single); ;
+		_asyncHandlerForAddressables = Addressables.LoadSceneAsync("Game", LoadSceneMode.Single);
+		SaveManager.SaveDataToJson(Application.persistentDataPath, Application.version);
 	}
 	
 	public void LoadMainMenuScene()
@@ -32,11 +43,16 @@ public class LoadingManager : MonoBehaviourSingleton<LoadingManager>
 	private void Start()
 	{
 		_loadingAnimationCD.Reset();
+		_internetCheckCD.Reset();
 		SetDefaultCanvasGroupSettings();
+		
+		SceneManager.sceneLoaded += AudioManager.Instance.ChangeMusic;
+		SceneManager.sceneLoaded += SetFirstLaunchToFalse;
 	}
 
 	private void LateUpdate()
 	{
+		IsAppConnectedToInternet();
 		UpdateSceneLoadStatus();
 		UpdateSceneLoadStatusForAddressables();
 		SwitchLoadingText();
@@ -69,8 +85,7 @@ public class LoadingManager : MonoBehaviourSingleton<LoadingManager>
 
 		_percentText.text = _asyncHandlerForAddressables.PercentComplete.ToString("P0");
 	}
-
-
+	
 	private void SwitchLoadingText()
 	{
 		if (!_loadingAnimationCD.isReady)
@@ -126,5 +141,47 @@ public class LoadingManager : MonoBehaviourSingleton<LoadingManager>
 		_canvasGroup.alpha = 0f;
 		_canvasGroup.blocksRaycasts = false;
 	}
+	
+	private void IsAppConnectedToInternet()
+	{
+		if (!_internetCheckCD.isReady)
+			return;
 
+		StartCoroutine(OnlineCheckRoutine());
+		_internetLogo.color = _isOnline ? Color.green : Color.red;
+		
+		if (IsFirstTimeOpened() && !_isOnline)
+			_internetWarning.gameObject.SetActive(true);
+		else
+			_internetWarning.gameObject.SetActive(false);
+
+		_internetCheckCD.Reset();
+		
+		
+		IEnumerator OnlineCheckRoutine()
+		{
+			var googleRequest = UnityWebRequest.Get("http://google.com");
+			yield return googleRequest.SendWebRequest();
+			_isOnline = googleRequest.error == null;
+		}
+	}
+	
+	private bool IsFirstTimeOpened()
+	{
+		return PlayerPrefs.GetInt("FIRSTTIMEOPENING", 1) == 1;
+	}
+
+	private void SetFirstLaunchToFalse(Scene scene, LoadSceneMode loadMode)
+	{
+		if (scene.name == "Game")
+			PlayerPrefs.SetInt("FIRSTTIMEOPENING", 0);
+	}
+	
+	private void OnDisable()
+	{
+		SceneManager.sceneLoaded -= AudioManager.Instance.ChangeMusic;
+		SceneManager.sceneLoaded -= SetFirstLaunchToFalse;
+	}
 }
+
+
