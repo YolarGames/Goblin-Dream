@@ -146,6 +146,8 @@ namespace Services
 			if (!_internetCheckCd.IsReady)
 				return;
 
+			Debug.LogWarning(_isOnline);
+			
 			StartCoroutine(OnlineCheckRoutine());
 			_internetLogo.color = _isOnline ? Color.green : Color.red;
 		
@@ -155,7 +157,6 @@ namespace Services
 				_internetWarning.gameObject.SetActive(false);
 
 			_internetCheckCd.Reset();
-		
 		
 			IEnumerator OnlineCheckRoutine()
 			{

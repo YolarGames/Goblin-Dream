@@ -6,7 +6,7 @@ namespace Utils
 	[Serializable]
 	public class Cooldown
 	{
-		[SerializeField] private float _cooldownValue;
+		[SerializeField] private float _cooldownValue = 1f;
 		private float _cooldownCompleteTime;
 
 		public void Reset() => _cooldownCompleteTime = Time.time + _cooldownValue;

@@ -1,4 +1,4 @@
-using GameCore.Services;
+using GameCore.GameServices;
 using UnityEditor;
 using UnityEngine;
 

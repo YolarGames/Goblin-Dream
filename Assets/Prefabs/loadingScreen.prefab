@@ -467,9 +467,9 @@ MonoBehaviour:
   _internetWarning: {fileID: 1081728695}
   _canvasGroup: {fileID: 1272658721}
   _loadingAnimationCd:
-    _cooldownValue: 0.1
+    _cooldownValue: 1
   _internetCheckCd:
-    _cooldownValue: 0.1
+    _cooldownValue: 5
   _internetLogo: {fileID: 4920293}
 --- !u!114 &233151511
 MonoBehaviour:
