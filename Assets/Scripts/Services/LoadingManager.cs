@@ -166,14 +166,12 @@ namespace Services
 			}
 		}
 	
-		private bool IsFirstTimeOpened()
-		{
-			return PlayerPrefs.GetInt("FIRSTTIMEOPENING", 1) == 1;
-		}
+		private bool IsFirstTimeOpened() =>
+			PlayerPrefs.GetInt("FIRSTTIMEOPENING", 1) == 1;
 
 		private void SetFirstLaunchToFalse(Scene scene, LoadSceneMode loadMode)
 		{
-			if (scene.name == "Game")
+			if (scene.name == "game")
 				PlayerPrefs.SetInt("FIRSTTIMEOPENING", 0);
 		}
 	
