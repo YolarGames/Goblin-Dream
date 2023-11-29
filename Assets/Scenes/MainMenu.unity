@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -490,6 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
@@ -506,6 +507,7 @@ MonoBehaviour:
   m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
 --- !u!1 &223440920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,8 +1466,6 @@ MonoBehaviour:
   _musicSource: {fileID: 761786201}
   _sfxSource: {fileID: 223440922}
   _audioMixer: {fileID: 24100000, guid: eec3fab575f258842b17a47836385ede, type: 2}
-  _musicMainMenu: {fileID: 8300000, guid: b006e36c2e00e8d46932b881219ebc00, type: 3}
-  _musicInBattle: {fileID: 8300000, guid: 11ea60daacaf2214d8eb1e01a7374e4a, type: 3}
   _clickSound: {fileID: 8300000, guid: 21908ef3197ac6b47b08dde2c2454b8a, type: 3}
 --- !u!1 &761786199
 GameObject:
@@ -1649,7 +1649,7 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!95 &782493875
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1666,7 +1666,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &826948994
 GameObject:
   m_ObjectHideFlags: 0
@@ -1718,7 +1719,7 @@ CanvasRenderer:
   m_CullTransparentMesh: 1
 --- !u!95 &826948999
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1735,7 +1736,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1012831259
 GameObject:
   m_ObjectHideFlags: 0
@@ -3069,7 +3071,7 @@ GameObject:
   - component: {fileID: 1944243895}
   - component: {fileID: 1944243894}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
