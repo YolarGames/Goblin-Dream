@@ -1,13 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-[Serializable]
-public class Cooldown
+namespace Utils
 {
-	[SerializeField] private float _cooldownValue;
-	private float _cooldownCompleteTime;
+	[Serializable]
+	public class Cooldown
+	{
+		[SerializeField] private float _cooldownValue;
+		private float _cooldownCompleteTime;
 
-	
-	public void Reset() => _cooldownCompleteTime = Time.time + _cooldownValue;
-	public bool isReady => _cooldownCompleteTime <= Time.time;
+		public void Reset() => _cooldownCompleteTime = Time.time + _cooldownValue;
+		public bool IsReady => _cooldownCompleteTime <= Time.time;
+	}
 }

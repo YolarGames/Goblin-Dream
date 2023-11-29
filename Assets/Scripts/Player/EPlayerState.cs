@@ -1,5 +1,8 @@
-﻿public enum EPlayerState
+﻿namespace Player
 {
-	Idle,
-	Move,
+	public enum EPlayerState
+	{
+		Idle,
+		Move,
+	}
 }

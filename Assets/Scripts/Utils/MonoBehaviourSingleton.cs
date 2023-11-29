@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
 
-public class MonoBehaviourSingleton<T> : MonoBehaviour where T :MonoBehaviour
+namespace Utils
 {
-	public static T Instance { get; private set; }
-
-	public virtual void Awake()
+	public class MonoBehaviourSingleton<T> : MonoBehaviour where T :MonoBehaviour
 	{
-		if (Instance != null && Instance != this)
-			Destroy(gameObject);
-		else
-			Instance = this as T;
+		public static T Instance { get; private set; }
+
+		public virtual void Awake()
+		{
+			if (Instance != null && Instance != this)
+				Destroy(gameObject);
+			else
+				Instance = this as T;
 		
-		DontDestroyOnLoad(gameObject);
+			DontDestroyOnLoad(gameObject);
+		}
 	}
 }

@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public class SetCanvasCamera : MonoBehaviour
+namespace UI
 {
-	[SerializeField] private Canvas _canvas;
-	[SerializeField] private string _cameraTag;
-	
-	private Camera _cameraUI;
-	
-	
-	private void Awake()
+	public class SetCanvasCamera : MonoBehaviour
 	{
-		_cameraUI = GameObject.FindWithTag(_cameraTag).GetComponent<Camera>();
-		if (_cameraUI)
-			_canvas.worldCamera = _cameraUI;
+		[SerializeField] private Canvas _canvas;
+		[SerializeField] private string _cameraTag;
+	
+		private Camera _cameraUI;
+	
+	
+		private void Awake()
+		{
+			_cameraUI = GameObject.FindWithTag(_cameraTag).GetComponent<Camera>();
+			if (_cameraUI)
+				_canvas.worldCamera = _cameraUI;
+		}
 	}
 }

@@ -1,47 +1,45 @@
-using System;
+using System.Collections;
+using GameCore.Services;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class CoinSpawner : MonoBehaviour
+namespace Coins
 {
-	public GameObject[] coinPrefabs;
-	[SerializeField] private bool _startOnAwake;
-	[SerializeField] private Vector3 _spawnBounds;
-	[SerializeField] private Cooldown _spawnCD;
-	private Vector3 _spawnArea;
-
-	private void Start()
+	public class CoinSpawner : MonoBehaviour
 	{
-		_spawnCD.Reset();
-		_spawnArea = transform.position + _spawnBounds;
-	}
+		[SerializeField] private Vector3 _spawnBounds;
+		[SerializeField] private float _spawnCooldown;
+		private Vector3 _spawnArea;
+		private IFactoryService _factoryService;
+		private WaitForSeconds _waitForIt;
+		private Coroutine _coroutine;
 
-	private void Update()
-	{
-		SpawnCoins();
-	}
-
-	private void SpawnCoins()
-	{
-		if (!_startOnAwake)
-			return;
-		
-		if (!_spawnCD.isReady)
-			return;
-		
-		var coin = GetRandomCoinObject();
-		var spawnPoint = GetRandomSpawnPoint();
-		var coinInstance = Instantiate(coin, spawnPoint, Quaternion.identity, this.transform);
-		_spawnCD.Reset();
-		
-		
-		GameObject GetRandomCoinObject()
+		private void Awake()
 		{
-			var randomIndex = Random.Range(0, coinPrefabs.Length);
-			return coinPrefabs[randomIndex];
+			_factoryService = GameServices.FactoryService;
+			_spawnArea = transform.position + _spawnBounds;
+			_waitForIt = new WaitForSeconds(_spawnCooldown);
+		}
+
+		private void Start() =>
+			_coroutine = StartCoroutine(SpawnCoins());
+
+		private void OnDisable() =>
+			StopCoroutine(_coroutine);
+
+		private IEnumerator SpawnCoins()
+		{
+			while (enabled)
+			{
+				Vector3 spawnPoint = GetRandomSpawnPoint();
+				Coin coinInstance = _factoryService.CreateCoin(spawnPoint);
+				coinInstance.transform.parent = transform;
+
+				yield return _waitForIt;
+			}
 		}
 		
-		Vector3 GetRandomSpawnPoint()
+		private Vector3 GetRandomSpawnPoint()
 		{
 			var randomX = Random.Range(-_spawnArea.x, _spawnArea.x);
 			var randomZ = Random.Range(-_spawnArea.z, _spawnArea.z);

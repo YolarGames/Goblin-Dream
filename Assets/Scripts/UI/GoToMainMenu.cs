@@ -1,14 +1,17 @@
+using Services;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class GoToMainMenu : MonoBehaviour
+namespace UI
 {
-	[SerializeField] private Button _gotoMenu;
+	public class GoToMainMenu : MonoBehaviour
+	{
+		[SerializeField] private Button _gotoMenu;
 
 	
-	private void Start()
-	{
-		_gotoMenu.onClick.AddListener(LoadingManager.Instance.LoadMainMenuScene);
+		private void Start()
+		{
+			_gotoMenu.onClick.AddListener(LoadingManager.Instance.LoadMainMenuScene);
+		}
 	}
 }
