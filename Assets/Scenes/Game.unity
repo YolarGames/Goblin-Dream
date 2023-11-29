@@ -150,11 +150,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1970195481}
-  - {fileID: 1215611453}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &217714061
 GameObject:
@@ -191,7 +189,7 @@ Transform:
   - {fileID: 1570361378}
   - {fileID: 1553829554}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &270956528
 GameObject:
@@ -351,7 +349,7 @@ Transform:
   - {fileID: 1642151999}
   - {fileID: 2120309760}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &508249493 stripped
 ParticleSystem:
@@ -492,9 +490,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8272943599214529815, guid: 47b41978aba272c47ae5f4a2f7179c61, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0b0ac5c8d52a7e749b715a2754e43725, type: 2}
     - target: {fileID: 8272943599223628453, guid: 47b41978aba272c47ae5f4a2f7179c61, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8272943599223628453, guid: 47b41978aba272c47ae5f4a2f7179c61, type: 3}
       propertyPath: m_LocalPosition.x
@@ -919,7 +921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9116749147264121396, guid: 24b0d75e136c92e45b6247a3bb6123db, type: 3}
       propertyPath: m_Name
-      value: Plane (2)
+      value: wall_2
       objectReference: {fileID: 0}
     - target: {fileID: 9116749147264121398, guid: 24b0d75e136c92e45b6247a3bb6123db, type: 3}
       propertyPath: m_Enabled
@@ -1197,7 +1199,7 @@ GameObject:
   - component: {fileID: 1215611454}
   - component: {fileID: 1215611455}
   m_Layer: 0
-  m_Name: CoinManager
+  m_Name: coinManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1215,8 +1217,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 136387039}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1215611454
 MonoBehaviour:
@@ -1277,7 +1279,7 @@ Transform:
   - {fileID: 963194228}
   - {fileID: 1429826311}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1429826309
 GameObject:
@@ -1586,7 +1588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9116749147264121396, guid: 24b0d75e136c92e45b6247a3bb6123db, type: 3}
       propertyPath: m_Name
-      value: Plane (4)
+      value: wall_4
       objectReference: {fileID: 0}
     - target: {fileID: 9116749147264121398, guid: 24b0d75e136c92e45b6247a3bb6123db, type: 3}
       propertyPath: m_Enabled
@@ -1672,7 +1674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9116749147264121396, guid: 24b0d75e136c92e45b6247a3bb6123db, type: 3}
       propertyPath: m_Name
-      value: Plane (3)
+      value: wall_3
       objectReference: {fileID: 0}
     - target: {fileID: 9116749147264121398, guid: 24b0d75e136c92e45b6247a3bb6123db, type: 3}
       propertyPath: m_Enabled
@@ -1763,7 +1765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9116749147264121396, guid: 24b0d75e136c92e45b6247a3bb6123db, type: 3}
       propertyPath: m_Name
-      value: Plane (1)
+      value: wall_1
       objectReference: {fileID: 0}
     - target: {fileID: 9116749147264121398, guid: 24b0d75e136c92e45b6247a3bb6123db, type: 3}
       propertyPath: m_Enabled
@@ -1787,7 +1789,7 @@ GameObject:
   - component: {fileID: 1970195481}
   - component: {fileID: 1970195483}
   m_Layer: 0
-  m_Name: EventManager
+  m_Name: eventManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1805,8 +1807,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 136387039}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1970195483
 MonoBehaviour:
@@ -1837,7 +1839,7 @@ GameObject:
   - component: {fileID: 2120309759}
   - component: {fileID: 2120309761}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: eventSustem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
