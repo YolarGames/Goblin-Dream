@@ -11,8 +11,8 @@ namespace Services
 {
 	public class SceneBundleLoader : MonoBehaviourSingleton<SceneBundleLoader>
 	{
-		[SerializeField] private SceneAsset _scene;
-		[SerializeField] private SceneAsset _mainMenu;
+		[SerializeField] private string _scene;
+		[SerializeField] private string _mainMenu;
 		private AsyncOperationHandle<SceneInstance> _gameLoadAsyncOperation;
 		private AsyncOperation _mainMenuLoadAsync;
 		private LoadingScreen _loadingScreen;
@@ -36,10 +36,10 @@ namespace Services
 			_loadingScreen.Show(LoadScene);
 		
 		private void LoadMainMenu() =>
-			_mainMenuLoadAsync = SceneManager.LoadSceneAsync(_mainMenu.name, LoadSceneMode.Single);
+			_mainMenuLoadAsync = SceneManager.LoadSceneAsync(_mainMenu, LoadSceneMode.Single);
 
 		private void LoadScene() =>
-			_gameLoadAsyncOperation = Addressables.LoadSceneAsync(_scene.name);
+			_gameLoadAsyncOperation = Addressables.LoadSceneAsync(_scene);
 
 		private void UpdateSceneLoadStatusForAddressables()
 		{
