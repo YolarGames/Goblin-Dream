@@ -1,15 +1,13 @@
 using UI;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.ResourceManagement.ResourceProviders;
 using UnityEngine.SceneManagement;
-using Utils;
 
 namespace Services
 {
-	public class SceneBundleLoader : MonoBehaviourSingleton<SceneBundleLoader>
+	public class SceneBundleLoader : MonoBehaviour
 	{
 		[SerializeField] private string _scene;
 		[SerializeField] private string _mainMenu;
@@ -17,11 +15,8 @@ namespace Services
 		private AsyncOperation _mainMenuLoadAsync;
 		private LoadingScreen _loadingScreen;
 
-		public override void Awake()
-		{
-			base.Awake();
+		private void Awake() =>
 			_loadingScreen = GetComponent<LoadingScreen>();
-		}
 
 		private void LateUpdate()
 		{
@@ -35,19 +30,22 @@ namespace Services
 		public void StartSceneLoading() =>
 			_loadingScreen.Show(LoadScene);
 		
-		private void LoadMainMenu() =>
+		private void LoadMainMenu()
+		{
 			_mainMenuLoadAsync = SceneManager.LoadSceneAsync(_mainMenu, LoadSceneMode.Single);
+			_mainMenuLoadAsync.completed += _loadingScreen.Hide;
+		}
 
-		private void LoadScene() =>
+		private void LoadScene()
+		{
 			_gameLoadAsyncOperation = Addressables.LoadSceneAsync(_scene);
+			_gameLoadAsyncOperation.Completed += _loadingScreen.Hide;
+		}
 
 		private void UpdateSceneLoadStatusForAddressables()
 		{
 			if (!_gameLoadAsyncOperation.IsValid())
 				return;
-
-			if (_gameLoadAsyncOperation.PercentComplete.Equals(1f))
-				_loadingScreen.Hide(null);
 
 			string percentText = _gameLoadAsyncOperation.PercentComplete.ToString("P0");
 			_loadingScreen.SetCompleteStatus(percentText);
@@ -57,9 +55,6 @@ namespace Services
 		{
 			if (_mainMenuLoadAsync == null)
 				return;
-
-			if (_mainMenuLoadAsync.progress.Equals(1f))
-				_loadingScreen.Hide(null);
 
 			string percentText = _mainMenuLoadAsync.progress.ToString("P0");
 			_loadingScreen.SetCompleteStatus(percentText);

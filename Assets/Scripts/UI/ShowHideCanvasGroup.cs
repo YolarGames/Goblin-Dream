@@ -42,20 +42,21 @@ namespace UI
 			SetInteractable(true);
 			SetBlockRaycasts(true);
 
-			_tween.Kill();
-
 			if (_isUnscaled)
 				_tween = _canvasGroup.DOFade(1, _showTime).SetUpdate(true);
 			else
 				_tween = _canvasGroup.DOFade(1, _showTime);
 
 			_tween.onComplete += InvokeShown;
-
-			void InvokeShown()
-			{
-				OnShown?.Invoke();
-				IsShown = true;
-			}
+		}
+		
+		private void InvokeShown()
+		{
+			Debug.Log("shown");
+			_tween.Kill();
+			OnShown?.Invoke();
+			OnShown = null;
+			IsShown = true;
 		}
 
 		private void HideAction()
@@ -63,22 +64,23 @@ namespace UI
 			SetInteractable(false);
 			SetBlockRaycasts(false);
 
-			_tween.Kill();
-
 			if (_isUnscaled)
 				_tween = _canvasGroup.DOFade(0, _hideTime).SetUpdate(true);
 			else
 				_tween = _canvasGroup.DOFade(0, _hideTime);
 
 			_tween.onComplete += InvokeHided;
-
-			void InvokeHided()
-			{
-				OnHided?.Invoke();
-				IsShown = false;
-			}
 		}
 
+		private void InvokeHided()
+		{
+			Debug.Log("hided");
+			_tween.Kill();
+			OnHided?.Invoke();
+			OnHided = null;
+			IsShown = false;
+		}
+		
 		private void SetBlockRaycasts(bool value) =>
 			_canvasGroup.blocksRaycasts = value;
 

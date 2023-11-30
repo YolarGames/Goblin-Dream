@@ -78,6 +78,20 @@ MonoBehaviour:
         m_Value: CCDBuildData/3e580591-8dbd-4bb8-af42-7b9ba09932c0/latest
       - m_Id: 4b43c80eb636eed4ba225ad0fd40bd12
         m_Value: https://f654c0d6-a0b0-4736-8dae-8cddcdba4eb0.client-api.unity3dusercontent.com/client_api/v1/buckets/3e580591-8dbd-4bb8-af42-7b9ba09932c0/release_by_badge/latest/entry_by_path/content/?path=
+    - m_InheritedParent: 
+      m_Id: ff5b3c4bd9fa31a4ba6d3bf27c91e5c1
+      m_ProfileName: built-in
+      m_Values:
+      - m_Id: d4b8f8a47d0b77a4cb85e83c44c1b1c3
+        m_Value: '[UnityEditor.EditorUserBuildSettings.activeBuildTarget]'
+      - m_Id: 5b92fa7ae0a27644693c2dbae151e136
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: feb7c5a4ea9a6fa43a0f005b2fb2954f
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
+      - m_Id: 5b29c7abc45e2c14e9e4f58e3816933f
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
+      - m_Id: 4b43c80eb636eed4ba225ad0fd40bd12
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
     m_ProfileEntryNames:
     - m_Id: d4b8f8a47d0b77a4cb85e83c44c1b1c3
       m_Name: BuildTarget

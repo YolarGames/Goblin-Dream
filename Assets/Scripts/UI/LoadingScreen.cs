@@ -1,6 +1,8 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.ResourceManagement.AsyncOperations;
+using UnityEngine.ResourceManagement.ResourceProviders;
 using Utils;
 
 namespace UI
@@ -16,17 +18,18 @@ namespace UI
 		private void LateUpdate() =>
 			UpdateLoadingText();
 
-		public void Show(UnityAction onShown)
+		public void Show(UnityAction onShown = null)
 		{
-			_canvasGroup.OnShown.AddListener(onShown);
+			if (onShown != null)
+				_canvasGroup.OnShown.AddListener(onShown);
 			_canvasGroup.Show();
 		}
 
-		public void Hide(UnityAction onHided)
-		{
-			_canvasGroup.OnHided.AddListener(onHided);
+		public void Hide(AsyncOperationHandle<SceneInstance> obj) =>
 			_canvasGroup.Hide();
-		}
+
+		public void Hide(AsyncOperation obj) =>
+			_canvasGroup.Hide();
 
 		public void SetCompleteStatus(string percent) =>
 			_percentText.SetText(percent);

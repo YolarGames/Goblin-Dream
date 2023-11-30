@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 196efda6eae80df4fbfd402b87ec0096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinValue: 5
+  _coinValue: 5
   _rigidbody: {fileID: 8867577220891958245}
   _boxCollider: {fileID: 1724672277}
   _rotationAngle: 200
