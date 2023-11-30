@@ -23,7 +23,7 @@ namespace Coins
 			_pickUpParticles.Play();
 		}
 
-		private void OnEnable() =>
+		private void Start() =>
 			EventManager.Instance.OnPickupCoin += UpdateCoinCounter;
 
 		private void OnDisable() =>
