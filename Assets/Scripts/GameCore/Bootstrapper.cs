@@ -1,6 +1,7 @@
 using GameCore.GameServices;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameCore
 {
@@ -17,6 +18,10 @@ namespace GameCore
 public class Game
 {
 	private GameServices _services = new();
+	private const string FIRST_LAUNCH_PREFS_INT = "first_launch";
+	
+	public Game() =>
+		SceneManager.sceneLoaded += SetFirstLaunch;
 
 	public static void Quit()
 	{
@@ -29,4 +34,13 @@ public class Game
 
 	public static void SetPause(bool value) =>
 		Time.timeScale = value ? 0 : 1;
+	
+	public static bool IsFirstLaunch() =>
+		PlayerPrefs.GetInt(FIRST_LAUNCH_PREFS_INT, 1) == 1;
+
+	private void SetFirstLaunch(Scene scene, LoadSceneMode loadMode)
+	{
+		if (scene.name == "game")
+			PlayerPrefs.SetInt(FIRST_LAUNCH_PREFS_INT, 0);
+	}
 }

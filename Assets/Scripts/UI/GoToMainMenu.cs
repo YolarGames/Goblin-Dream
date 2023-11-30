@@ -11,7 +11,7 @@ namespace UI
 	
 		private void Start()
 		{
-			_gotoMenu.onClick.AddListener(LoadingManager.Instance.LoadMainMenuScene);
+			_gotoMenu.onClick.AddListener(SceneBundleLoader.Instance.StartMainMenuLoading);
 		}
 	}
 }

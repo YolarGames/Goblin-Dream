@@ -1,4 +1,4 @@
-using System;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -67,7 +67,8 @@ namespace Services
 		private void LoadGameScene()
 		{
 			AudioManager.Instance.PlayClick();
-			LoadingManager.Instance.LoadGameScene();
+			var bundleLoader = FindObjectOfType<SceneBundleLoader>();
+			bundleLoader.StartSceneLoading();
 		}
 	}
 }

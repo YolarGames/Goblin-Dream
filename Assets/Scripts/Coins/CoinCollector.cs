@@ -1,3 +1,4 @@
+using System;
 using Services;
 using TMPro;
 using UnityEngine;
@@ -21,15 +22,11 @@ namespace Coins
 			_coinText.text = _totalCoins.ToString();
 			_pickUpParticles.Play();
 		}
-	
-		private void Start()
-		{
-			EventManager.Instance.OnPickupCoin += UpdateCoinCounter;
-		}
 
-		private void OnDisable()
-		{
+		private void OnEnable() =>
+			EventManager.Instance.OnPickupCoin += UpdateCoinCounter;
+
+		private void OnDisable() =>
 			EventManager.Instance.OnPickupCoin -= UpdateCoinCounter;
-		}
 	}
 }

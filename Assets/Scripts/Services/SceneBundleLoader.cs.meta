@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b880327cdaa2c03409a6bb3a5d9e0019
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - _scene: {instanceID: 0}
+  - _mainMenu: {fileID: 102900000, guid: 56f0012140879ca40aea33b7107e5458, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
